@@ -5,7 +5,6 @@ const scoreElement = document.getElementById('score');
 const yesOption = document.getElementById('yes');
 const noOption = document.getElementById('no');
 
-// Array de perguntas e respostas corretas
 const questions = [
   { question: 'Você gostaria de continuar?', correctAnswer: 'yes' },
   { question: 'Você gosta de JavaScript?', correctAnswer: 'yes' },
@@ -13,10 +12,9 @@ const questions = [
   { question: 'Você prefere gatos a cachorros?', correctAnswer: 'no' }
 ];
 
-let currentQuestionIndex = 0; // Índice da pergunta atual
-let score = 0; // Pontuação inicial
+let currentQuestionIndex = 0; 
+let score = 0; 
 
-// Função para atualizar a pergunta ou terminar o quiz
 function updateQuestion() {
   currentQuestionIndex++;
   if (currentQuestionIndex < questions.length) {
@@ -26,42 +24,37 @@ function updateQuestion() {
   }
 }
 
-// Função para terminar o quiz
 function endQuiz() {
-  card.style.display = 'none'; // Esconder o card
+  card.style.display = 'none';
   resultElement.textContent = `Fim do quiz! Sua pontuação final é: ${score} pontos.`;
 }
 
-// Função para verificar a resposta e calcular a pontuação
 function checkAnswer(answer) {
   const correctAnswer = questions[currentQuestionIndex].correctAnswer;
   if (answer === correctAnswer) {
-    score += 10; // Adiciona 10 pontos se a resposta for correta
+    score += 10; 
   }
-  scoreElement.textContent = score; // Atualiza a pontuação na tela
+  scoreElement.textContent = score; 
 }
 
-// Função para mover o card para a direita (Sim)
 yesOption.addEventListener('click', () => {
   card.classList.add('move-right');
   setTimeout(() => {
-    resetCard(); // Resetar a posição após a transição
-    checkAnswer('yes'); // Verifica se a resposta foi correta
-    updateQuestion(); // Atualizar a pergunta
-  }, 600); // O tempo da transição
+    resetCard();
+    checkAnswer('yes');
+    updateQuestion();
+  }, 600); 
 });
 
-// Função para mover o card para a esquerda (Não)
 noOption.addEventListener('click', () => {
   card.classList.add('move-left');
   setTimeout(() => {
-    resetCard(); // Resetar a posição após a transição
-    checkAnswer('no'); // Verifica se a resposta foi correta
-    updateQuestion(); // Atualizar a pergunta
-  }, 600); // O tempo da transição
+    resetCard(); 
+    checkAnswer('no'); 
+    updateQuestion();
+  }, 600);
 });
 
-// Função para resetar o card à sua posição original
 function resetCard() {
   card.classList.remove('move-right', 'move-left');
 }
